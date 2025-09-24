@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+Flip-Cart Shopping Application ::
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a modern, responsive web application built to demonstrate a practical understanding of key frontend technologies. It simulates a basic shopping experience where users can view products, add them to a cart, and see a summary of their selections. The application architecture is designed for scalability and maintainability, separating concerns between UI, state management, and data fetching.
 
-## Available Scripts
+Core Technologies and Their Roles:-
+React: The application is built using a component-based architecture with React. Reusable components like Header, Home, and Cart manage their own state and render dynamic UIs. The main App component acts as the application's root, orchestrating the layout and routing.
 
-In the project directory, you can run:
+Redux Toolkit: This library is used for centralized state management. Instead of passing data between components through props (prop drilling), the application uses a global store.
 
-### `npm start`
+createSlice: defines the cartSlice, which contains the initial state (initialState = []) and the reducers (addToCart and removeFromCart). These reducers specify how the state can be modified in a predictable way.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+configureStore: sets up the Redux store, connecting the cartReducer to the application.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+useDispatch: is a React hook used in components like ProductTile and CartTile to dispatch actions (e.g., addToCart, removeFromCart) that trigger state changes in the store.
 
-### `npm test`
+useSelector: is a hook that allows components to select and access specific parts of the Redux state, such as the cart array, and automatically re-render when that part of the state changes.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+React Router DOM: This library handles all client-side routing within the single-page application.
 
-### `npm run build`
+The BrowserRouter wraps the entire application to enable routing.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The Routes component acts as a container for individual Route components, which define the paths and corresponding components to render.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The Link component is used to create navigation links (<Link to={"/"}>) that navigate between pages without requiring a full page reload, providing a fast and smooth user experience.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Tailwind CSS: This is a utility-first CSS framework used for styling the entire application. Instead of writing custom CSS, the UI is built by applying pre-defined utility classes directly in the JSX (e.g., flex, p-4, rounded-xl). This approach simplifies styling, ensures design consistency, and makes the application fully responsive by using responsive prefixes like sm: and md:.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+External API Integration: The Home component uses the built-in fetch API to make an asynchronous GET request to https://fakestoreapi.com/products. The data is then stored in local state (useState), and a loading spinner from react-loader-spinner provides a positive user experience while the data is being fetched.
